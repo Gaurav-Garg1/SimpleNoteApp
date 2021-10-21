@@ -35,6 +35,12 @@ class DisplayNotesFragment : Fragment() {
             findNavController().navigate(R.id.action_displayNotesFragment_to_createNoteFragment)
         }
 
+        viewModel.notes.observe(viewLifecycleOwner, {
+            it?.let {
+
+            }
+        })
+
         return binding.root
     }
 
