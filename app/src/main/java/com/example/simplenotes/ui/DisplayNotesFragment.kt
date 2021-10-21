@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.simplenotes.R
 import com.example.simplenotes.databinding.FragmentDisplayNotesBinding
 
@@ -31,13 +32,17 @@ class DisplayNotesFragment : Fragment() {
         val vmFactory = DisplayNoteViewModelFactory(application)
         viewModel = ViewModelProvider(this, vmFactory).get(DisplayNoteViewModel::class.java)
 
-        binding.addFab.setOnClickListener{
+        binding.addFab.setOnClickListener {
             findNavController().navigate(R.id.action_displayNotesFragment_to_createNoteFragment)
         }
 
+        val adapter = NoteAdapter()
+        binding.noteRecyclerView.adapter = adapter
+        binding.noteRecyclerView.layoutManager = LinearLayoutManager(context)
+
         viewModel.notes.observe(viewLifecycleOwner, {
             it?.let {
-
+                adapter.data = it
             }
         })
 
