@@ -3,9 +3,32 @@ package com.example.simplenotes.ui
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
+import com.example.simplenotes.data.NoteDatabase
+import com.example.simplenotes.data.NoteItem
+import com.example.simplenotes.data.NoteRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-class CreateNoteViewModel(application: Application) :ViewModel() {
+class CreateNoteViewModel(application: Application) : ViewModel() {
+
+    private val repository: NoteRepository
+
+    init {
+        val dao = NoteDatabase.getInstance(application).noteDao
+        repository = NoteRepository(dao)
+    }
+
+    fun onSubmit(text: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val newNote = NoteItem()
+            newNote.note = text
+            repository.insert(newNote)
+        }
+    }
+
 }
+
 class CreateNoteViewModelFactory(
     private val application: Application
 ) : ViewModelProvider.Factory {

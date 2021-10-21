@@ -29,6 +29,8 @@ class CreateNoteFragment : Fragment() {
         viewModel = ViewModelProvider(this, vmFactory).get(CreateNoteViewModel::class.java)
 
         binding.saveButton.setOnClickListener{
+            val input = binding.noteInput.text.toString().trim()
+            if(input.isNotEmpty()) viewModel.onSubmit(input)
             findNavController().navigate(R.id.action_createNoteFragment_to_displayNotesFragment)
         }
 
