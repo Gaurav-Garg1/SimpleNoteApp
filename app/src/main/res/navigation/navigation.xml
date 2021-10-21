@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/displayNotesFragment"
-        android:name="com.example.simplenotes.DisplayNotesFragment"
+        android:name="com.example.simplenotes.ui.DisplayNotesFragment"
         android:label="fragment_display_notes"
         tools:layout="@layout/fragment_display_notes" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/createNoteFragment"
-        android:name="com.example.simplenotes.CreateNoteFragment"
+        android:name="com.example.simplenotes.ui.CreateNoteFragment"
         android:label="fragment_create_note"
         tools:layout="@layout/fragment_create_note" >
         <action
