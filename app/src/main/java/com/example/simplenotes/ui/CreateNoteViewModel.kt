@@ -27,6 +27,14 @@ class CreateNoteViewModel(application: Application) : ViewModel() {
         }
     }
 
+    fun onUpdate(text: String,time:Long) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val note = NoteItem()
+            note.note = text
+            note.dateTime = time
+            repository.update(note)
+        }
+    }
 }
 
 class CreateNoteViewModelFactory(

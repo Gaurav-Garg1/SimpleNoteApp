@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -59,7 +60,8 @@ class DisplayNotesFragment : Fragment(), ViewClicked {
     }
 
     override fun onEditClicked(note: NoteItem) {
-
+        val bundle = bundleOf("noteTxt" to note.note,"time" to note.dateTime)
+        findNavController().navigate(R.id.action_displayNotesFragment_to_createNoteFragment,bundle)
     }
 
 }
