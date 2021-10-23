@@ -21,7 +21,9 @@
         tools:layout="@layout/fragment_create_note" >
         <action
             android:id="@+id/action_createNoteFragment_to_displayNotesFragment"
-            app:destination="@id/displayNotesFragment" />
+            app:destination="@id/displayNotesFragment"
+            app:popUpTo="@id/displayNotesFragment"
+            app:popUpToInclusive="true" />
         <argument
             android:name="note"
             android:defaultValue="null" />
