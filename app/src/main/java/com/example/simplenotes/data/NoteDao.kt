@@ -1,10 +1,7 @@
 package com.example.simplenotes.data
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 
 @Dao
 interface NoteDao {
@@ -20,6 +17,6 @@ interface NoteDao {
     @Query("select * from NoteItem order by time desc ")
     fun getAll(): LiveData<List<NoteItem>>
 
-    @Query("delete from NoteItem where time = :key")
-    fun deleteItem(key: Long)
+    @Delete
+    fun deleteItem(noteItem: NoteItem)
 }

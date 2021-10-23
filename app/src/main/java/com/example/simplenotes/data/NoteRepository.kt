@@ -11,7 +11,7 @@ class NoteRepository(private val noteDao: NoteDao) {
     }
 
     fun delete(note: NoteItem){
-        noteDao.deleteItem(note.dateTime)
+        noteDao.deleteItem(note)
     }
 
     fun get(note: NoteItem){

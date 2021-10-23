@@ -4,9 +4,12 @@ import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import com.example.simplenotes.data.NoteDatabase
 import com.example.simplenotes.data.NoteItem
 import com.example.simplenotes.data.NoteRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class DisplayNoteViewModel(application: Application) :ViewModel() {
     val notes: LiveData<List<NoteItem>>
@@ -17,6 +20,13 @@ class DisplayNoteViewModel(application: Application) :ViewModel() {
         repository = NoteRepository(dao)
         notes = repository.allNotes
     }
+
+    fun deleteNote(noteItem: NoteItem){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.delete(noteItem)
+        }
+    }
+
 }
 class DisplayNoteViewModelFactory(
     private val application: Application

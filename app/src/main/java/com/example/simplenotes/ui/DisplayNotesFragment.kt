@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -53,11 +52,14 @@ class DisplayNotesFragment : Fragment(), ViewClicked {
     }
 
     override fun onDelClicked(note: NoteItem) {
-        Toast.makeText(context,"Note Clicked ${note.note.take(10)}",Toast.LENGTH_SHORT).show()
+        Snackbar.make(binding.root, "Note Clicked ", Snackbar.LENGTH_SHORT)
+            .setAction(
+                "Delete",{ viewModel.deleteNote(note) }
+            ).show()
     }
 
     override fun onEditClicked(note: NoteItem) {
-        Snackbar.make(binding.root,"Note Clicked ${note.note.take(10)}",Snackbar.LENGTH_SHORT).show()
+
     }
 
 }
