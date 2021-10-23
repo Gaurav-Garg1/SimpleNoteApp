@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class NoteItem(
-    @PrimaryKey @ColumnInfo(name = "time")
     var note : String = "",
-    val dateTime: Long = System.currentTimeMillis()
+    @PrimaryKey @ColumnInfo(name = "time")
+    var dateTime: Long = System.currentTimeMillis()
 )
